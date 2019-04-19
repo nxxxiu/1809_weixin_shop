@@ -8,9 +8,29 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
-    //购物车页面
+    //购物车列表页面
     public function index(){
-        echo __METHOD__;die;
+        $cart_list=Cart::where(['uid'=>Auth::id(),'session_id'=>Session::getId()])->get()->toArray();
+//        dd($cart_list);
+        if ($cart_list){
+            $goods_amount=0;
+            foreach ($cart_list as $k=>$v){
+                $goods=Goods::where(['goods_id'=>$v['goods_id']])->first()->toArray();
+//                print_r($goods);die;
+                $goods_amount+=$goods['goods_price'];
+                $goods_list[]=$goods;
+            }
+            //展示购物车
+            $data=[
+                'goods_list'=>$goods_list,
+                'goods_amount'=>$goods_amount/100
+            ];
+//            dd($data);
+            return view('cart.index',$data);
+        }else{
+            header('Refresh:2;url=/');
+            die("购物车为空,2秒后跳转至首页");
+        }
     }
 
     //添加购物车
@@ -33,7 +53,6 @@ class CartController extends Controller
             $cartInfo=[
                 'goods_id'=>$goods_id,
                 'goods_name'=>$goodsInfo->goods_name,
-                'goods_price'=>$goodsInfo->goods_price,
                 'uid'=>Auth::id(),
                 'session_id'=>Session::getId()
             ];
