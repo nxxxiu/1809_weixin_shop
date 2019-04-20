@@ -76,15 +76,15 @@
 
         </div>
         <ul>
-            @foreach ($goods_list as $k=>$v)
-                <li>{{$v['goods_name']}} </li>
+            @foreach ($data as $k=>$v)
+                <li>{{$v['goods_name']}} - ￥{{$v['goods_price']}}</li>
+                <form action="/cart/add/{{$v['goods_id']}}" method="get">
+                    <input type="submit" value="加入购物车">
+                </form>
             @endforeach
         </ul>
         <hr>
-        总价：¥{{$goods_amount}}<br>
-        <form action="/order/create" method="get">
-            <input type="submit" value="提交订单">
-        </form>
+
     </div>
 </div>
 </body>

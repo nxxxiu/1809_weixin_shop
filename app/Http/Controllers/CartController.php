@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Cart;
 use App\Goods;
@@ -9,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     //购物车列表页面
-    public function index(){
+    public function cartlist(){
         $cart_list=Cart::where(['uid'=>Auth::id(),'session_id'=>Session::getId()])->get()->toArray();
 //        dd($cart_list);
         if ($cart_list){
@@ -26,10 +25,10 @@ class CartController extends Controller
                 'goods_amount'=>$goods_amount/100
             ];
 //            dd($data);
-            return view('cart.index',$data);
+            return view('cart.cartlist',$data);
         }else{
-            header('Refresh:2;url=/');
-            die("购物车为空,2秒后跳转至首页");
+            header('Refresh:2;url=/cartlist');
+            die("购物车为空");
         }
     }
 
@@ -37,7 +36,7 @@ class CartController extends Controller
     public function add($goods_id){
         if (empty($goods_id)){
             header('Refresh:3;url=/cart');
-            die("请选择商品，3秒后自动跳转至购物车");
+            die("请选择商品");
         }
 //        echo 'goods_id:'.$goods_id;
         //判断商品是否有效
@@ -46,8 +45,8 @@ class CartController extends Controller
         if ($goodsInfo){
             //商品状态为2 已经被删除
             if ($goodsInfo->goods_status==2){
-                header('Refresh:2;url=/');
-                echo "商品不存在，2秒后自动跳到首页";die;
+                header('Refresh:2;url=/cartlist');
+                echo "商品不存在";die;
             }
             //添加到购物车
             $cartInfo=[
@@ -61,7 +60,10 @@ class CartController extends Controller
             $res=Cart::insertGetId($cartInfo);
 //            dd($res);
             if ($res){
-                header('Refresh:2;url=/');
+                header('Refresh:2;url=/cartlist');
+                die("添加购物车成功");
+            }else{
+                header('Refresh:2;url=/cartlist');
                 die("添加购物车失败");
             }
         }else{
