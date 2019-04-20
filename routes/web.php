@@ -27,5 +27,5 @@ Route::get('/cartlist', 'CartController@cartlist');
 Route::get('/cart/add/{goods_id?}', 'CartController@add');//购物车添加
 
 //订单
-Route::get('/order/order', 'OrderController@order');
-
+Route::get('/order/order', 'OrderController@order');//提交订单
+Route::get('/order/orderlist', 'OrderController@orderlist');//订单列表

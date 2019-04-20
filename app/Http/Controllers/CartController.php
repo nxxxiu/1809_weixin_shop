@@ -52,6 +52,7 @@ class CartController extends Controller
             $cartInfo=[
                 'goods_id'=>$goods_id,
                 'goods_name'=>$goodsInfo->goods_name,
+                'goods_price'=>$goodsInfo->goods_price,
                 'uid'=>Auth::id(),
                 'session_id'=>Session::getId()
             ];

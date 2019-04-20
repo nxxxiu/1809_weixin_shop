@@ -72,19 +72,15 @@
     @endif
 
     <div class="content">
-        <div class="title m-b-md">
-
-        </div>
         <ul>
-            @foreach ($goods_list as $k=>$v)
-                <li>{{$v['goods_name']}} - ￥{{$v['goods_price']}}</li>
+            @foreach($orderInfo as $k=>$v)
+                <li>
+                    {{ $v['order_id']  }} >> {{$v['order_sn']}} >> {{$v['order_amount']}} >> {{date("Y-m-d H:i:s",$v['add_time'])}}
+                    <a target="_blank" href="/pay/weixin?order_id={{$v['order_id']}}"> 微信支付 </a>
+                    <br>
+                </li>
             @endforeach
         </ul>
-        <hr>
-        总价：¥{{$goods_amount}}<br>
-        <form action="/order/order" method="get">
-            <input type="submit" value="提交订单">
-        </form>
     </div>
 </div>
 </body>
