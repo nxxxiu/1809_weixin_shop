@@ -90,6 +90,20 @@
 <script src="/js/qrcode.js"></script>
 <script type="text/javascript">
     new QRCode(document.getElementById("qrcode"), "{{$code_url}}");
+    //ajax轮询，检查订单支付状态
+    setInterval(function(){
+        $.ajax({
+            url : '/order/paystatus?oid=' + "{{$order_id}}",
+            type: 'get',
+            dataType:'json',
+            success: function(d){
+                if(d.pay_status==1){
+                    alert("支付成功");
+                    location.href = "/wxpay/paySuccess?order_id={{$order_id}}";
+                }
+            }
+        });
+    },2000)
 </script>
 
 </body>

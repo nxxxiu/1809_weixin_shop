@@ -64,7 +64,7 @@ class OrderController extends Controller
         if($info){
             if($info->pay_time>0){
                 $response=[
-                    'status'=>0,
+                    'status'=>1,
                     'msg'=>'ok'
                 ];
             }

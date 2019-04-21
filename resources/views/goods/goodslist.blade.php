@@ -84,7 +84,6 @@
             @endforeach
         </ul>
         <hr>
-
     </div>
 </div>
 </body>

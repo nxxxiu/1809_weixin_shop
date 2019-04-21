@@ -32,3 +32,6 @@ Route::get('/order/orderlist', 'OrderController@orderlist');//订单列表
 
 //微信支付
 Route::get('/wxpay/pay', 'WxpayController@pay');      //微信支付
+Route::post('/wxpay/notify', 'WxpayController@notify');      //微信支付通知回调
+//支付
+Route::get('/wxpay/paySuccess', 'WxpayController@paySuccess');      //微信支付成功
