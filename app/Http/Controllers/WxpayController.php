@@ -5,7 +5,7 @@ use App\Order;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Weixin\WXBizDataCryptController;
+use App\Http\Controllers\WXBizDataCryptController;
 
 class WxpayController extends Controller
 {
