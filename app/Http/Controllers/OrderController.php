@@ -31,7 +31,7 @@ class OrderController extends Controller
 //        dd($orderInfo);
         $order_id = Order::insertGetId($orderInfo);
         //订单详情表
-        foreach ($cartInfo as $k=>$v){
+        foreach($cartInfo as $k=>$v){
             $detailInfo=[
                 'order_id'=> $order_id,
                 'goods_id'=> $v['goods_id'],
@@ -54,5 +54,24 @@ class OrderController extends Controller
             'orderInfo'=>$orderInfo
         ];
         return view('order.orderlist',$data);
+    }
+
+    //查询订单支付状态
+    public function payStatus(){
+        $order_id=intval($_GET['order_id']);
+        $info=Order::where(['order_id'=>$order_id])->first();
+        $response=[];
+        if($info){
+            if($info->pay_time>0){
+                $response=[
+                    'status'=>0,
+                    'msg'=>'ok'
+                ];
+            }
+            echo '<pre>';print_r($info->toArray());echo '</pre>';
+        }else{
+            die("订单不存在");
+        }
+        die(json_encode($response));
     }
 }

@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
     <!-- Styles -->
     <style>
         html, body {
@@ -72,16 +68,29 @@
     @endif
 
     <div class="content">
-        <ul>
-            @foreach($orderInfo as $k=>$v)
-                <li>
-                    {{ $v['order_id']  }} >> {{$v['order_sn']}} >> {{$v['order_amount']}} >> {{date("Y-m-d H:i:s",$v['add_time'])}}
-                    <a target="_blank" href="/wxpay/pay?order_id={{$v['order_id']}}"> 微信支付 </a>
-                    <br>
-                </li>
-            @endforeach
-        </ul>
+        <div class="title m-b-md">
+
+        </div>
+
+        <div id="qrcode"></div>
+
+        <div class="links">
+            <a href="https://laravel.com/docs">Docs</a>
+            <a href="https://laracasts.com">Laracasts</a>
+            <a href="https://laravel-news.com">News</a>
+            <a href="https://blog.laravel.com">Blog</a>
+            <a href="https://nova.laravel.com">Nova</a>
+            <a href="https://forge.laravel.com">Forge</a>
+            <a href="https://github.com/laravel/laravel">GitHub</a>
+        </div>
     </div>
 </div>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/qrcode.js"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), "{{$code_url}}");
+</script>
+
 </body>
 </html>

@@ -27,7 +27,7 @@ class CartController extends Controller
 //            dd($data);
             return view('cart.cartlist',$data);
         }else{
-            header('Refresh:2;url=/cartlist');
+            header('Refresh:2;url=/goodslist');
             die("购物车为空");
         }
     }
