@@ -138,7 +138,7 @@ class WxpayController extends Controller
     public function notify(){
 //        echo "111";
         $data=file_get_contents("php://input");
-        dd($data);
+//        dd($data);
         //日志
         $log_str=date('Y-m-d H:i:s')."\n".$data."\n";
         file_put_contents('logs/wx_pay_notice.log',$log_str,FILE_APPEND);
@@ -158,7 +158,7 @@ class WxpayController extends Controller
             }
         }
         $response='<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
-        dd($response);
+//        dd($response);
         return $response;
     }
 
