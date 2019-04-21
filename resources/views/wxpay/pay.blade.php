@@ -93,7 +93,7 @@
     //ajax轮询，检查订单支付状态
     setInterval(function(){
         $.ajax({
-            url : '/order/paystatus?oid=' + "{{$order_id}}",
+            url : '/order/payStatus?order_id=' + "{{$order_id}}",
             type: 'get',
             dataType:'json',
             success: function(d){

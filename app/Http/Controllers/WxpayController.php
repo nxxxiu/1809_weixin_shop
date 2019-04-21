@@ -52,7 +52,8 @@ class WxpayController extends Controller
 //		echo 'trade_type: '.$data->trade_type;echo '<br>';
 //      echo 'code_url: '.$data->code_url;echo '<br>';
         $data=[
-            'code_url'=>$data->code_url
+            'code_url'=>$data->code_url,
+            'order_id'=>$order_id
         ];
         return view('wxpay.pay',$data);
 
