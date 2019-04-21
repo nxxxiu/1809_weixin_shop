@@ -136,11 +136,14 @@ class WxpayController extends Controller
 
     //微信支付回调
     public function notify(){
+//        echo "111";
         $data=file_get_contents("php://input");
+        dd($data);
         //日志
         $log_str=date('Y-m-d H:i:s')."\n".$data."\n";
         file_put_contents('logs/wx_pay_notice.log',$log_str,FILE_APPEND);
         $xml=simplexml_load_string($data);
+//        dd($xml);
         if ($xml->result_code=='SUCCESS'&&$xml->return_code=='SUCCESS'){
             //验证签名
             $sign=true;
@@ -155,7 +158,7 @@ class WxpayController extends Controller
             }
         }
         $response='<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
-        echo $response;
+        dd($response);
         return $response;
     }
 
