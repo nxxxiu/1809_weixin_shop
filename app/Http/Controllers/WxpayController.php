@@ -11,7 +11,7 @@ class WxpayController extends Controller
 {
 
     public $wx_unifiedorder_url="https://api.mch.weixin.qq.com/pay/unifiedorder";   //统一下单接口
-    public $notify_url='http://www.1809_weixin_shop.com/wxpay/notify';         //支付回调
+    public $notify_url='http://1809niqingxiu.comcto.com/wxpay/notify';         //支付回调
     //微信支付测试
     public function pay(){
 //        echo Str::random(16);die;
@@ -148,10 +148,14 @@ class WxpayController extends Controller
             //验证签名
             $sign=true;
             if ($sign){
+//                echo "22";
                 //验签成功
                 //TODO 逻辑处理  订单状态更新
                 $pay_time = strtotime($xml->time_end);
-                Order::where(['order_sn'=>$xml->out_trade_no])->update(['order_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
+//                echo $pay_time;
+//                $res=Order::where(['order_id'=>4])->update(['pay_time'=>time()]);
+                $res=Order::where(['order_sn'=>$xml->out_trade_no])->update(['pay_time'=>$pay_time]);
+                dd($res);
             }else{
                 //验签失败
                 echo "验证签名失败，IP：".$_SERVER['REMOTE_ADDR'];
