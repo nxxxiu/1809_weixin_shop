@@ -76,12 +76,10 @@
 
         </div>
         <ul>
-            @foreach ($data as $k=>$v)
-                <li><a href="/goodsdetail/{{$v['goods_id']}}">{{$v['goods_name']}}</a> - ￥{{$v['goods_price']}}</li>
-                <form action="/cart/add/{{$v['goods_id']}}" method="get">
-                    <input type="submit" value="加入购物车">
-                </form>
-            @endforeach
+            <li>商品名称：{{$data['goods_name']}}</li>
+            <li>商品价格：{{$data['goods_price']}}</li>
+            <li>商品库存：{{$data['goods_store']}}</li>
+            <li>浏览次数：{{$history}}</li>
         </ul>
         <hr>
     </div>

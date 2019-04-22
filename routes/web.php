@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //商品
 Route::get('/goodslist', 'GoodsController@goodslist');
+Route::get('/goodsdetail/{id}', 'GoodsController@goodsdetail');
 
 //购物车
 Route::get('/cartlist', 'CartController@cartlist');
