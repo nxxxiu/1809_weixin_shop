@@ -154,7 +154,7 @@ class WxpayController extends Controller
                 $pay_time = strtotime($xml->time_end);
 //                echo $pay_time;
 //                $res=Order::where(['order_id'=>4])->update(['pay_time'=>time()]);
-                $res=Order::where(['order_sn'=>$xml->out_trade_no])->update(['pay_time'=>$pay_time]);
+                $res=Order::where(['order_sn'=>$xml->out_trade_no])->update(['order_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
 //                dd($res);
             }else{
                 //验签失败
