@@ -155,7 +155,7 @@ class WxpayController extends Controller
 //                echo $pay_time;
 //                $res=Order::where(['order_id'=>4])->update(['pay_time'=>time()]);
                 $res=Order::where(['order_sn'=>$xml->out_trade_no])->update(['pay_time'=>$pay_time]);
-                dd($res);
+//                dd($res);
             }else{
                 //验签失败
                 echo "验证签名失败，IP：".$_SERVER['REMOTE_ADDR'];

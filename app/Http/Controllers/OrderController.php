@@ -68,10 +68,10 @@ class OrderController extends Controller
                     'msg'=>'ok'
                 ];
             }
-            echo '<pre>';print_r($info->toArray());echo '</pre>';
+//            echo '<pre>';print_r($info->toArray());echo '</pre>';
         }else{
             die("订单不存在");
         }
-        die(json_encode($response));
+        return json_encode($response);
     }
 }
