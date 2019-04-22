@@ -58,9 +58,13 @@ class OrderController extends Controller
 
     //查询订单支付状态
     public function payStatus(){
-        $order_id=intval($_GET['order_id']);
+        $order_id=$_GET['order_id'];
+//        dd($order_id);
         $info=Order::where(['order_id'=>$order_id])->first();
-        $response=[];
+//        dd($info);
+        $response=[
+            'status'=>2,
+        ];
         if($info){
             if($info->pay_time>0){
                 $response=[
