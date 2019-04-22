@@ -71,7 +71,7 @@
         <div class="title m-b-md">
 
         </div>
-
+{{--        {{$order_id}}--}}
         <div id="qrcode"></div>
 
         <div class="links">

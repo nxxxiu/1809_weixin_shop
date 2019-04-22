@@ -21,7 +21,7 @@ class WxpayController extends Controller
             die("订单不存在");
         }
         $total_fee=1;   //用户要支付的金额
-        $order_id=time().mt_rand(11111,99999);//随机生成订单号
+        $order_sn=time().mt_rand(11111,99999);//随机生成订单号
         $order_info=[
             'appid'=>env('WEIXIN_APPID_0'),//微信支付绑定的服务号APPID
             'mch_id'=>env('WEIXIN_MCH_ID'),//商户ID
