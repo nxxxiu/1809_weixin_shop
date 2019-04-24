@@ -84,7 +84,7 @@ class WeixinController extends Controller
                         'subscribe_time'=>$u['subscribe_time'],
                         'subscribe_scene'=>$u['subscribe_scene']
                     ];
-                    $res = wxUser::insert($data);
+                    $res = WxUser::insert($data);
                     echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎关注 '. $u['nickname'] .']]></Content></xml>';
                 }
             }
@@ -146,8 +146,7 @@ class WeixinController extends Controller
                 'headimgurl'=>$userInfo['headimgurl']
             ];
 //            dd($data);
-            $res=WxUser::insert($data);
-            dd($res);
+            WxUser::insertGetId($data);
             echo '欢迎:'.$userInfo['nickname'];
         }
     }
