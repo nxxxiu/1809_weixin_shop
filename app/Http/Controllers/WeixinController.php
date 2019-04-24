@@ -133,7 +133,7 @@ class WeixinController extends Controller
         $res=WxUser::where('openid',$openid)->first();
 //        dd($res);
         if($res){
-            echo '欢迎回来:'.$res['user_name'];
+            echo '欢迎回来:'.$res['nickname'];
         }else{
             $data=[
                 'openid'=>$openid,
