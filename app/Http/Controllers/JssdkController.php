@@ -16,10 +16,6 @@ class JssdkController extends Controller
 //        var_dump($ticket);
         $timestamp=time();
         $current_url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-//        echo 'nonceStr:'.$nonceStr;echo '</br>';
-//        echo 'ticket:'.$ticket;echo '</br>';
-//        echo 'timestamp:'.$timestamp;echo '</br>';
-//        echo 'current_url:'.$current_url;echo '</br>';die;
         $str="jsapi_ticket=$ticket&noncestr=$nonceStr&timestamp=$timestamp&url=$current_url";
 //        echo $str;
         $sign=sha1($str);

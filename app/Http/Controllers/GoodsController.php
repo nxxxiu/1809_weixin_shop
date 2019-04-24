@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Request;
 use App\Goods;
+use Illuminate\Support\Str;
+
 class GoodsController extends Controller
 {
     //商品列表
@@ -41,8 +43,26 @@ class GoodsController extends Controller
             ];
             $data1[]=Goods::where($where)->first();
         }
-
-        return view('goods.goodsdetail',['data'=>$data,'view'=>$view,'data1'=>$data1]);
+        //计算签名
+        $nonceStr=Str::random(10);
+        $ticket=getJsapiTicket();
+//        var_dump($ticket);
+        $timestamp=time();
+        $current_url=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        $str="jsapi_ticket=$ticket&noncestr=$nonceStr&timestamp=$timestamp&url=$current_url";
+//        echo $str;
+        $sign=sha1($str);
+//        echo 'signature:'.$sign;die;
+        $js_config=[
+            'appId'=>env('APPID'),//公众号appid
+            'timestamp'=>$timestamp,
+            'nonceStr'=>$nonceStr,//随机字符串
+            'signature'=>$sign,//签名
+        ];
+        $data2=[
+            'jsconfig'=>$js_config
+        ];
+        return view('goods.goodsdetail',['data'=>$data,'view'=>$view,'data1'=>$data1],$data2);
     }
 
     //商品浏览量排名
