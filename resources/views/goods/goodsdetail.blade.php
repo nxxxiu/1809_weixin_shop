@@ -111,7 +111,7 @@
             title: '旺旺', // 分享标题
             desc: 'emmmm....', // 分享描述
             link: 'http://1809niqingxiu.comcto.com/goodsdetail/'+"{{$data['goods_id']}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://1809niqingxiu.comcto.com/img/ok.jpg', // 分享图标
+            imgUrl: 'http://1809niqingxiu.comcto.com/img/okk.jpg', // 分享图标
             success: function () {
                 // 设置成功
                 // alert('分享成功');
@@ -120,7 +120,7 @@
         wx.updateTimelineShareData({
             title: '旺旺', // 分享标题
             link: 'http://1809niqingxiu.comcto.com/goodsdetail/'+"{{$data['goods_id']}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://1809niqingxiu.comcto.com/img/ok.jpg', // 分享图标
+            imgUrl: 'http://1809niqingxiu.comcto.com/img/okk.jpg', // 分享图标
             success: function () {
                 // 设置成功
                 // alert('分享成功');
