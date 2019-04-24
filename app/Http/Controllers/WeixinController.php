@@ -45,10 +45,10 @@ class WeixinController extends Controller
 //            dd($id);
             if ($obj->Content=='最新商品'){
                 $goodsInfo=Goods::orderBy('add_time','desc')->first();
-                echo "<xml>
+                echo '<xml>
                           <ToUserName><![CDATA['.$openid.']]></ToUserName>
                           <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-                          <CreateTime>time()</CreateTime>
+                          <CreateTime>'.time().'</CreateTime>
                           <MsgType><![CDATA[news]]></MsgType>
                           <ArticleCount>1</ArticleCount>
                           <Articles>
@@ -56,10 +56,10 @@ class WeixinController extends Controller
                               <Title><![CDATA['.$goodsInfo->goods_name.']]></Title>
                               <Description><![CDATA['.$goodsInfo->goods_desc.']]></Description>
                               <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/ok.jpg'.']]></PicUrl>
-                              <Url><![CDATA['.'http://1809niqingxiu.comcto.com/goodsdetail/$goodsInfo->goods_id'.']]></Url>
+                              <Url><![CDATA['.'http://1809niqingxiu.comcto.com/goodsdetail/'.$goodsInfo->goods_id.']]></Url>
                             </item>
                           </Articles>
-                        </xml>";
+                        </xml>';
             }
         }elseif($type == 'event') {
             $event = $obj->Event; //事件类型
