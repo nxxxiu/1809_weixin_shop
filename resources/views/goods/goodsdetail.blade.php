@@ -114,7 +114,7 @@
             imgUrl: 'http://1809niqingxiu.comcto.com/img/ok.jpg', // 分享图标
             success: function () {
                 // 设置成功
-                alert('分享成功');
+                // alert('分享成功');
             }
         })
         wx.updateTimelineShareData({
@@ -123,7 +123,7 @@
             imgUrl: 'http://1809niqingxiu.comcto.com/img/ok.jpg', // 分享图标
             success: function () {
                 // 设置成功
-                alert('分享成功');
+                // alert('分享成功');
             }
         })
     });
