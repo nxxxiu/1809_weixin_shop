@@ -130,6 +130,7 @@ class WeixinController extends Controller
 //        print_r($userInfo);
         // 用户信息入库
         $openid=$userInfo['openid'];
+        dd($openid);
         $res=WxUser::where('openid',$openid)->first();
 //        dd($res);
         if($res){
