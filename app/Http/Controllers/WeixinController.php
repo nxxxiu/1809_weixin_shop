@@ -145,8 +145,9 @@ class WeixinController extends Controller
                 'user_city'=>$userInfo['city'],
                 'headimgurl'=>$userInfo['headimgurl']
             ];
-            dd($data);die;
-            WxUser::insert($data);
+//            dd($data);
+            $res=WxUser::insert($data);
+            dd($res);
             echo '欢迎:'.$userInfo['nickname'];
         }
     }
