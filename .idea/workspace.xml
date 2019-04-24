@@ -65,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/goods/goodsdetail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-199">
-              <caret line="112" column="50" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="50" />
+            <state relative-caret-position="329">
+              <caret line="122" column="63" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="63" />
               <folding>
                 <element signature="e#1882#1902#0#HTML" expanded="true" />
                 <element signature="e#2211#2250#0#HTML" expanded="true" />
@@ -324,7 +324,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/weixin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -377,12 +377,12 @@
       <workItem from="1555934123334" duration="884000" />
       <workItem from="1555979378061" duration="1406000" />
       <workItem from="1555983574726" duration="18000" />
-      <workItem from="1556066597782" duration="11785000" />
+      <workItem from="1556066597782" duration="12077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64289000" />
+    <option name="totallyTimeSpent" value="64581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -692,8 +692,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/goods/goodsdetail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
-          <caret line="112" column="50" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="50" />
+        <state relative-caret-position="329">
+          <caret line="122" column="63" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="63" />
           <folding>
             <element signature="e#1882#1902#0#HTML" expanded="true" />
             <element signature="e#2211#2250#0#HTML" expanded="true" />
