@@ -146,7 +146,7 @@ class WeixinController extends Controller
                 'headimgurl'=>$userInfo['headimgurl']
             ];
 //            dd($data);
-            WxUser::insertGetId($data);
+            WxUser::insert($data);
             echo '欢迎:'.$userInfo['nickname'];
         }
     }
