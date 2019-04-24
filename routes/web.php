@@ -38,6 +38,10 @@ Route::get('/wxpay/pay', 'WxpayController@pay');      //微信支付
 Route::post('/wxpay/notify', 'WxpayController@notify');      //微信支付通知回调
 Route::post('/wxpay/paySuccess', 'WxpayController@paySuccess');      //微信支付成功
 
+//微信接口
+Route::get('/weixin/valid','WeixinController@valid');//原样返回echostr 第一次get请求
+Route::post('/weixin/valid','WeixinController@wxvalid');//接收微信的推送事件 post
+
 //JS-SDK
 Route::get('/jssdk/jstest','JssdkController@jstest');
 Route::get('/jssdk/getimg', 'JssdkController@getimg');//获取JSSDK上传的图片
