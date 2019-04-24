@@ -127,5 +127,13 @@
                 // alert('分享成功');
             }
         })
+        wx.onMenuShareTimeline({
+            title: '旺旺', // 分享标题
+            link: 'http://1809niqingxiu.comcto.com/goodsdetail/' + "{{$data['goods_id']}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://1809niqingxiu.comcto.com/img/okk.jpg', // 分享图标
+            success: function () {
+                // 用户点击了分享后执行的回调函数
+            },
+        })
     });
 </script>
