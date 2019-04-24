@@ -41,6 +41,35 @@ class WeixinController extends Controller
                 'font' => $font
             ];
             $id = WxText::insertGetId($info);
+//            dd($id);
+
+        }elseif($type == 'event') {
+            $event = $obj->Event; //事件类型
+            if ($event == 'subscribe') {
+                $userInfo = wxUser::where(['openid'=>$openid])->first();
+                if ($userInfo) {
+//                    dd('m');
+                    echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎回来 '. $userInfo['nickname'] .']]></Content></xml>';
+                } else {
+//                    dd('hh');
+                    $u = $this->WxUserTail($openid);
+//                    dd($u);
+                    //用户信息入库
+                    $data=[
+                        'openid'=>$u['openid'],
+                        'nickname'=>$u['nickname'],
+                        'sex'=>$u['sex'],
+                        'city'=>$u['city'],
+                        'province'=>$u['province'],
+                        'country'=>$u['country'],
+                        'headimgurl'=>$u['headimgurl'],
+                        'subscribe_time'=>$u['subscribe_time'],
+                        'subscribe_scene'=>$u['subscribe_scene']
+                    ];
+                    $res = wxUser::insert($data);
+                    echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎关注 '. $u['nickname'] .']]></Content></xml>';
+                }
+            }
         }
     }
 
