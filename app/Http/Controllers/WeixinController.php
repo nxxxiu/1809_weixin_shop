@@ -131,6 +131,21 @@ class WeixinController extends Controller
         // 用户信息入库
         $openid=$userInfo['openid'];
         $res=WxUser::where('openid',$openid)->first();
-        dd($res);
+//        dd($res);
+        if($res){
+            echo '欢迎回来:'.$res['user_name'];
+        }else{
+            $data=[
+                'openid'=>$openid,
+                'user_name'=>$userInfo['nickname'],
+                'user_sex'=>$userInfo['sex'],
+                'user_country'=>$userInfo['country'],
+                'user_province'=>$userInfo['province'],
+                'user_city'=>$userInfo['city'],
+                'headimgurl'=>$userInfo['headimgurl']
+            ];
+            WxUser::insert($data);
+            echo '欢迎:'.$userInfo['nickname'];
+        }
     }
 }
