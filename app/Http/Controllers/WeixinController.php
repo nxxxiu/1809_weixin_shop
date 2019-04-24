@@ -99,7 +99,7 @@ class WeixinController extends Controller
         $token=Redis::get($redis_key);
         if (!$token){
             $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' . env('APPID') . '&secret=' . env('APPSECRET');
-//        echo $url;die;
+//            echo $url;die;
             $json_str=file_get_contents($url);
 //        print_r($json_str);die;
             $arr=json_decode($json_str,true);
@@ -138,11 +138,11 @@ class WeixinController extends Controller
         }else{
             $data=[
                 'openid'=>$openid,
-                'user_name'=>$userInfo['nickname'],
-                'user_sex'=>$userInfo['sex'],
-                'user_country'=>$userInfo['country'],
-                'user_province'=>$userInfo['province'],
-                'user_city'=>$userInfo['city'],
+                'nickname'=>$userInfo['nickname'],
+                'sex'=>$userInfo['sex'],
+                'country'=>$userInfo['country'],
+                'province'=>$userInfo['province'],
+                'city'=>$userInfo['city'],
                 'headimgurl'=>$userInfo['headimgurl']
             ];
 //            dd($data);
