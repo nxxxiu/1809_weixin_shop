@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/test/urlencode', function () {
+    echo urlencode($_GET['url']);
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 //商品
@@ -33,6 +37,9 @@ Route::get('/order/order', 'OrderController@order');//提交订单
 Route::get('/order/orderlist', 'OrderController@orderlist');//订单列表
 Route::get('/order/payStatus', 'OrderController@payStatus');      //查询订单支付状态
 
+//删除未支付的订单
+Route::get('/Crontab/delorders', 'CrontabController@delorders');//删除订单
+
 //微信支付
 Route::get('/wxpay/pay', 'WxpayController@pay');      //微信支付
 Route::post('/wxpay/notify', 'WxpayController@notify');      //微信支付通知回调
@@ -42,6 +49,7 @@ Route::post('/wxpay/paySuccess', 'WxpayController@paySuccess');      //微信支
 Route::get('/weixin/valid','WeixinController@valid');//原样返回echostr 第一次get请求
 Route::post('/weixin/valid','WeixinController@wxvalid');//接收微信的推送事件 post
 Route::get('/weixin/accessToken','WeixinController@accessToken');//获取微信accesstoken
+Route::get('/weixin/callback', 'WeixinController@callback');//微信网页授权回调地址
 
 //JS-SDK
 Route::get('/jssdk/jstest','JssdkController@jstest');

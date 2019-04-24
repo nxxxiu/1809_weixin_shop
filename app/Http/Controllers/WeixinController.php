@@ -118,4 +118,9 @@ class WeixinController extends Controller
         $arr = json_decode($data, true);
         return $arr;
     }
+
+    //微信网页授权回调地址
+    public function callback(){
+        var_dump($_GET['code']);
+    }
 }
