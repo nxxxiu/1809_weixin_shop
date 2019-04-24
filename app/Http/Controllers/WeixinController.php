@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\WxText;
 use App\WxUser;
+use App\Goods;
 use Illuminate\Support\Facades\Redis;
 class WeixinController extends Controller
 {
@@ -42,7 +43,24 @@ class WeixinController extends Controller
             ];
             $id = WxText::insertGetId($info);
 //            dd($id);
-
+            if ($obj->Content=='最新商品'){
+                $goodsInfo=Goods::orderBy('add_time','desc')->first();
+                echo "<xml>
+                          <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                          <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                          <CreateTime>time()</CreateTime>
+                          <MsgType><![CDATA[news]]></MsgType>
+                          <ArticleCount>1</ArticleCount>
+                          <Articles>
+                            <item>
+                              <Title><![CDATA['.$goodsInfo->goods_name.']]></Title>
+                              <Description><![CDATA['.$goodsInfo->goods_desc.']]></Description>
+                              <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/ok.jpg'.']]></PicUrl>
+                              <Url><![CDATA['.'http://1809niqingxiu.comcto.com/goodsdetail/$goodsInfo->goods_id'.']]></Url>
+                            </item>
+                          </Articles>
+                        </xml>";
+            }
         }elseif($type == 'event') {
             $event = $obj->Event; //事件类型
             if ($event == 'subscribe') {
