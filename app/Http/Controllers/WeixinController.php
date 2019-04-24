@@ -121,6 +121,9 @@ class WeixinController extends Controller
 
     //微信网页授权回调地址
     public function callback(){
-        var_dump($_GET['code']);
+        $code=$_GET['code'];
+        $access_token=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx11c143836e27ac69&secret=f13ee305431b7450e43a982f3263968e&code=".$code."&grant_type=authorization_code"),true);
+        echo "<pre>";print_r($access_token);echo "</pre>";
+
     }
 }
