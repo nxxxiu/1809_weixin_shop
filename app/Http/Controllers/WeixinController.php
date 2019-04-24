@@ -123,7 +123,10 @@ class WeixinController extends Controller
     public function callback(){
         $code=$_GET['code'];
         $access_token=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx11c143836e27ac69&secret=f13ee305431b7450e43a982f3263968e&code=".$code."&grant_type=authorization_code"),true);
-        echo "<pre>";print_r($access_token);echo "</pre>";
-
+//        print_r($access_token);
+        //用户信息
+        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
+        $userInfo=json_decode(file_get_contents($url),true);
+         echo "<pre>";print_r($userInfo);echo "</pre>";
     }
 }
