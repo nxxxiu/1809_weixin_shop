@@ -21,7 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //商品
 Route::get('/goodslist', 'GoodsController@goodslist');
-Route::get('/goodsdetail/{id}', 'GoodsController@goodsdetail');
+Route::get('/goodsdetail/{goods_id?}', 'GoodsController@goodsdetail');//商品详情
+Route::get('/getsort', 'GoodsController@getsort');//根据商品点击量排序
 
 //购物车
 Route::get('/cartlist', 'CartController@cartlist');
@@ -36,3 +37,7 @@ Route::get('/order/payStatus', 'OrderController@payStatus');      //查询订单
 Route::get('/wxpay/pay', 'WxpayController@pay');      //微信支付
 Route::post('/wxpay/notify', 'WxpayController@notify');      //微信支付通知回调
 Route::post('/wxpay/paySuccess', 'WxpayController@paySuccess');      //微信支付成功
+
+//JS-SDK
+Route::get('/jssdk/jstest','JssdkController@jstest');
+Route::get('/jssdk/getimg', 'JssdkController@getimg');//获取JSSDK上传的图片
