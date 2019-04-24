@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\WxText;
+use App\WxUser;
 class WeixinController extends Controller
 {
     public function valid()
