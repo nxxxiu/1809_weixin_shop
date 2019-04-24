@@ -103,7 +103,7 @@
         timestamp:"{{$jsconfig['timestamp']}}" , // 必填，生成签名的时间戳
         nonceStr:"{{$jsconfig['nonceStr']}}", // 必填，生成签名的随机串
         signature: "{{$jsconfig['signature']}}",// 必填，签名
-        jsApiList: ['updateAppMessageShareData','onMenuShareTimeline','chooseImage','uploadImage'] // 必填，需要使用的JS接口列表
+        jsApiList: ['updateAppMessageShareData','updateTimelineShareData','chooseImage','uploadImage'] // 必填，需要使用的JS接口列表
     });
 
     wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
@@ -118,13 +118,14 @@
                 // alert('分享成功');
             }
         })
-        wx.onMenuShareTimeline({
+        wx.updateTimelineShareData({
             title: '旺旺', // 分享标题
-            link: 'http://1809niqingxiu.comcto.com/goodsdetail/'+"{{$data['goods_id']}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            link: 'http://1809niqingxiu.comcto.com/goodsdetail/' + "{{$data['goods_id']}}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: 'http://1809niqingxiu.comcto.com/img/okk.jpg', // 分享图标
             success: function () {
                 // 设置成功
                 // alert('分享成功');
             }
+        })
     });
 </script>
