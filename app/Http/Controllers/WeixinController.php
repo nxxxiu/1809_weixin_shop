@@ -127,6 +127,10 @@ class WeixinController extends Controller
         //用户信息
         $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
         $userInfo=json_decode(file_get_contents($url),true);
-         echo "<pre>";print_r($userInfo);echo "</pre>";
+//        print_r($userInfo);
+        // 用户信息入库
+        $openid=$userInfo['openid'];
+        $res=User::where('openid',$openid)->first();
+        dd($res);
     }
 }
