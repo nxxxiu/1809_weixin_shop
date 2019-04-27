@@ -49,8 +49,7 @@ Route::post('/wxpay/paySuccess', 'WxpayController@paySuccess');      //微信支
 Route::get('/weixin/valid','WeixinController@valid');//原样返回echostr 第一次get请求
 Route::post('/weixin/valid','WeixinController@wxvalid');//接收微信的推送事件 post
 Route::get('/weixin/callback', 'WeixinController@callback');//微信网页授权回调地址
-Route::get('/weixin/material', 'WeixinController@material');//微信获取素材
 
 //JS-SDK
 Route::get('/jssdk/jstest','JssdkController@jstest');
-Route::get('/jssdk/getimg', 'JssdkController@getimg');//
+Route::get('/jssdk/getimg', 'JssdkController@getimg');

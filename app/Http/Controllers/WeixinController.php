@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\WxText;
@@ -124,10 +123,4 @@ class WeixinController extends Controller
         }
     }
 
-    //微信获取素材
-    public function material(){
-        $client=new Clinet();
-        $url='https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token='.getWxAccessToken();
-
-    }
 }
