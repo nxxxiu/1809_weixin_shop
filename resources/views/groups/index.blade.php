@@ -19,12 +19,14 @@
             <td><input type="checkbox" id="allbox"></td>
             <td width="50" align="center">id</td>
             <td width="250" align="center">openid</td>
+            <td width="250" align="center">昵称</td>
         </tr>
         @foreach($data as $k=>$v)
         <tr>
             <td openid="{{$v->openid}}"><input type="checkbox" id="box"></td>
             <td align="center">{{$v->id}}</td>
             <td align="center">{{$v->openid}}</td>
+            <td align="center">{{$v->nickname}}</td>
         </tr>
         @endforeach
     </table>
