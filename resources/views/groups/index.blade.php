@@ -22,16 +22,16 @@
             <td width="250" align="center">昵称</td>
         </tr>
         @foreach($data as $k=>$v)
-        <tr>
-            <td openid="{{$v->openid}}"><input type="checkbox" id="box"></td>
-            <td align="center">{{$v->id}}</td>
-            <td align="center">{{$v->openid}}</td>
-            <td align="center">{{$v->nickname}}</td>
-        </tr>
+            <tr>
+                <td openid="{{$v->openid}}"><input type="checkbox" class="box"></td>
+                <td align="center">{{$v->id}}</td>
+                <td align="center">{{$v->openid}}</td>
+                <td align="center">{{$v->nickname}}</td>
+            </tr>
         @endforeach
     </table>
 
-    <input type="text" placeholder="请填写要发送的内容" id="text">
+    <input type="text" placeholder="群发的内容" id="text">
     <button id="btn">发送</button>
 </body>
 </html>
@@ -41,19 +41,12 @@
         //全选
         $('#allbox').click(function () {
             var checked=$('#allbox').prop('checked');
-            $('#box').prop('checked',checked);
-        })
-
-        //取消选
-        $('#box').click(function () {
-            if ($(this).prop('checked')==false){
-                $('#allbox').prop('checked',false);
-            }
+            $('.box').prop('checked',checked);
         })
 
         //点击发送
         $('#btn').click(function () {
-            var id=$('#box');
+            var id=$('.box');
             // console.log(id);
             var text=$('#text').val();
             var openid='';

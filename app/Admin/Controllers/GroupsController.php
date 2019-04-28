@@ -46,13 +46,12 @@ class GroupsController extends Controller
         ];
 //        print_r($arr);die;
         $str=json_encode($arr,JSON_UNESCAPED_UNICODE);
-//        print_r($str);die;
         $url='https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token='.getWxAccessToken();
+//        echo $url;die;
         $response=$client->request('POST',$url,[
             'body'=>$str
         ]);
-//        print_r($response->getBody());die;
-
+//        dd($client->getBody());
     }
 
 }
