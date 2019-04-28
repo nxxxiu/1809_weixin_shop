@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Material;
@@ -6,6 +7,7 @@ use Encore\Admin\Controllers\HasResourceActions;
 use GuzzleHttp\Client;
 use Encore\Admin\Layout\Content;
 use Illuminate\Http\Request;
+
 class MaterialController extends Controller{
     public function index(Content $content){
         return $content
@@ -47,6 +49,4 @@ class MaterialController extends Controller{
         }
 //        exit('未获取到上传文件或上传过程出错');
     }
-
-
 }

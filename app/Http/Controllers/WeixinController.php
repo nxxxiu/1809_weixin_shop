@@ -88,6 +88,24 @@ class WeixinController extends Controller
                     echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎关注 '. $u['nickname'] .']]></Content></xml>';
                 }
             }
+        }elseif (isset($obj->EventKey)){
+            if ($obj->EventKey==666){
+                echo '<xml>
+                  <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                      <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                      <CreateTime>'.time().'</CreateTime>
+                      <MsgType><![CDATA[news]]></MsgType>
+                      <ArticleCount>1</ArticleCount>
+                      <Articles>
+                        <item>
+                          <Title><![CDATA[最新活动]]></Title>
+                          <Description><![CDATA[description1]]></Description>
+                          <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/okk.jpg'.']]></PicUrl>
+                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/activity/index'.']]></Url>
+                        </item>
+                      </Articles>
+                </xml>';
+            }
         }
     }
 
