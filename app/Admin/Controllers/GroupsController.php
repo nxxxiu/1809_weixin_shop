@@ -27,7 +27,7 @@ class GroupsController extends Controller
 //        dd($data);
         return $content
             ->header('用户管理')
-            ->description('群发消息')
+            ->description('消息群发')
             ->body(view('groups.index',['data'=>$data]));
     }
 

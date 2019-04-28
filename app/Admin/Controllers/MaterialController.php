@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class MaterialController extends Controller{
     public function index(Content $content){
         return $content
-            ->header('商品管理')
-            ->description('商品列表')
+            ->header('素材管理')
+            ->description('新增素材')
             ->body( view('material.index'));
     }
 
