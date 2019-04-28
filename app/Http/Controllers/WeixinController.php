@@ -193,4 +193,13 @@ class WeixinController extends Controller
         }
     }
 
+    //查询用户信息
+    public function WxUserTail($openid)
+    {
+        $data = file_get_contents("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . getWxAccessToken() . "&openid=" . $openid . "&lang=zh_CN");
+//        print_r("https://api.weixin.qq.com/cgi-bin/user/info?accessToken=" . $this->accessToken() . "&openid=" . $openid . "&lang=zh_CN");die;
+        $arr = json_decode($data, true);
+        return $arr;
+    }
+
 }
