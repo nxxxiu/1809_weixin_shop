@@ -15,10 +15,8 @@ class ActivityController extends Controller
             'expire_seconds'=>604800,
             'action_name'=>'QR_SCENE',
             'action_info'=> [
-                'action_info'=>[
-                    'scene'=>[
-                        'scene_id'=>'666'
-                    ]
+                'scene'=>[
+                    'scene_id'=>'666'
                 ]
             ]
         ];
