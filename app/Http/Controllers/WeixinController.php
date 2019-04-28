@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\WxText;
 use App\WxUser;
 use App\Goods;
+use App\Activity;
 use Illuminate\Support\Facades\Redis;
 class WeixinController extends Controller
 {
@@ -61,37 +62,34 @@ class WeixinController extends Controller
                           </Articles>
                         </xml>';
             }
-        }elseif($type == 'event') {
-            $event = $obj->Event; //事件类型
-            if ($event == 'subscribe') {
-                $userInfo = wxUser::where(['openid'=>$openid])->first();
-                if ($userInfo) {
-//                    dd('m');
-                    echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎回来 '. $userInfo['nickname'] .']]></Content></xml>';
-                } else {
-//                    dd('hh');
-                    $u = $this->WxUserTail($openid);
-//                    dd($u);
-                    //用户信息入库
-                    $data=[
-                        'openid'=>$u['openid'],
-                        'nickname'=>$u['nickname'],
-                        'sex'=>$u['sex'],
-                        'city'=>$u['city'],
-                        'province'=>$u['province'],
-                        'country'=>$u['country'],
-                        'headimgurl'=>$u['headimgurl'],
-                        'subscribe_time'=>$u['subscribe_time'],
-                        'subscribe_scene'=>$u['subscribe_scene']
-                    ];
-                    $res = WxUser::insert($data);
-                    echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎关注 '. $u['nickname'] .']]></Content></xml>';
-                }
+        }else if($type='event'){
+            $event=$obj->Event;
+            switch($event){
+                case 'SCAN':
+                    if(isset($obj->EventKey)){
+                        $this->qrcode($obj);//扫带参数二维码
+                    }
+                    break;
+                case 'subscribe':
+                    $this->subscribe($obj);//扫码关注
+                    break;
+                default:
+                    $response_xml = 'success';
             }
-        }elseif (isset($obj->EventKey)){
-            if ($obj->EventKey==666){
-                echo '<xml>
-                  <ToUserName><![CDATA['.$openid.']]></ToUserName>
+            echo $response_xml;
+        }
+    }
+
+    //扫描带参数二维码
+    public function qrcode($obj){
+        $wx_id=$obj->ToUserName;
+        $openid=$obj->FromUserName;
+        $EventKey=$obj->EventKey;
+        //验证用户是否存在
+        $res=WxUser::where(['openid'=>$openid,'event_key'=>$EventKey])->first();
+        if($res){
+            $response_xml= '<xml>
+                      <ToUserName><![CDATA['.$openid.']]></ToUserName>
                       <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
                       <CreateTime>'.time().'</CreateTime>
                       <MsgType><![CDATA[news]]></MsgType>
@@ -100,12 +98,64 @@ class WeixinController extends Controller
                         <item>
                           <Title><![CDATA[最新活动]]></Title>
                           <Description><![CDATA[description1]]></Description>
-                          <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/okk.jpg'.']]></PicUrl>
-                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/activity/index'.']]></Url>
+                          <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/ok.jpg'.']]></PicUrl>
+                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/artivity/index'.']]></Url>
                         </item>
                       </Articles>
-                </xml>';
-            }
+                    </xml>';
+        }else{
+            $response_xml= '<xml>
+                      <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                      <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                      <CreateTime>'.time().'</CreateTime>
+                      <MsgType><![CDATA[news]]></MsgType>
+                      <ArticleCount>1</ArticleCount>
+                      <Articles>
+                        <item>
+                          <Title><![CDATA[最新活动]]></Title>
+                          <Description><![CDATA[description1]]></Description>
+                          <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/ok.jpg'.']]></PicUrl>
+                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/artivity/index'.']]></Url>
+                        </item>
+                      </Articles>
+                    </xml>';
+            $data=[
+                'openid'=>$openid,
+                'event_key'=>$EventKey,
+                'create_time'=>$obj->CreateTime
+            ];
+            $res1=WxUser::insert($data);
+//            dd($res1);
+        }
+        die($response_xml);
+    }
+
+    //扫码关注
+    public function subscribe($obj){
+        $wx_id=$obj->ToUserName;
+        $openid=$obj->FromUserName;
+        $userInfo=wxUser::where('openid',$openid)->first();
+        if ($userInfo) {
+//                    dd('m');
+            echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎回来 '. $userInfo['nickname'] .']]></Content></xml>';
+        } else {
+//                    dd('hh');
+            $u = $this->WxUserTail($openid);
+//                    dd($u);
+            //用户信息入库
+            $data=[
+                'openid'=>$u['openid'],
+                'nickname'=>$u['nickname'],
+                'sex'=>$u['sex'],
+                'city'=>$u['city'],
+                'province'=>$u['province'],
+                'country'=>$u['country'],
+                'headimgurl'=>$u['headimgurl'],
+                'subscribe_time'=>$u['subscribe_time'],
+                'subscribe_scene'=>$u['subscribe_scene']
+            ];
+            $res = WxUser::insert($data);
+            echo '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎关注 '. $u['nickname'] .']]></Content></xml>';
         }
     }
 
