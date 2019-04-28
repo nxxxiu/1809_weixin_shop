@@ -34,10 +34,10 @@ class GoodsController extends Controller
         $redis_history_key='history:view:'.Auth::id();
 //        dd($redis_history_key);
         Redis::zAdd($redis_history_key,time(),$goods_id);
-        $goods_id=Redis::zRevRange($redis_history_key,0,100000000000,true);//倒序
+        $goods_ids=Redis::zRevRange($redis_history_key,0,100000000000,true);//倒序
 //        dd($goods_id);
         $data1=[];
-        foreach ($goods_id as $k=>$v) {
+        foreach ($goods_ids as $k=>$v) {
             $where=[
                 'goods_id'=>$k
             ];
@@ -62,7 +62,8 @@ class GoodsController extends Controller
         $data2=[
             'jsconfig'=>$js_config
         ];
-        return view('goods.goodsdetail',['data'=>$data,'view'=>$view,'data1'=>$data1],$data2);
+        $url_code="http://1809niqingxiu.comcto.com/goodsdetail?goods_id=".$goods_id;
+        return view('goods.goodsdetail',['data'=>$data,'view'=>$view,'data1'=>$data1,'url_code'=>$url_code],$data2);
     }
 
     //商品浏览量排名

@@ -56,35 +56,20 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
 
-    <div class="content" style="float: right">
-        <div >
-            <ul>
-                <li>商品名称：{{$data['goods_name']}}</li>
-                <li>商品价格：{{$data['goods_price']}}</li>
-                <li>商品库存：{{$data['goods_store']}}</li>
-                <li>浏览次数：{{$view}}</li>
-            </ul>
-            <hr>
-        </div>
-
+<div>
+    <div>
+        <h2>商品详情</h2>
+        <ul>
+            <li>商品名称：{{$data['goods_name']}}</li>
+            <li>商品价格：{{$data['goods_price']}}</li>
+            <li>商品库存：{{$data['goods_store']}}</li>
+            <li>浏览次数：{{$view}}</li>
+        </ul>==============================================
     </div>
-    <div style="float: right;margin-left: 300px">
-        <h1>浏览历史</h1>
+    <div>
+        <h2>浏览历史</h2>
         <ul>
             @foreach($data1 as $k=>$v)
                 <li>商品名称：{{$v->goods_name}} ------ 商品价格：￥{{$v->goods_price}}</li>
@@ -92,10 +77,16 @@
         </ul>
     </div>
 </div>
+
+<div id="qrcode"></div>
 </body>
 </html>
 <script src="/js/jquery-3.2.1.min.js"></script>
 <script src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script src="/js/qrcode.js"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById('qrcode'), "{{$url_code}}");
+</script>
 <script>
     wx.config({
         // debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
