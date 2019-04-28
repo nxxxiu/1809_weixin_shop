@@ -20,6 +20,7 @@ class GoodsController extends Controller
     //商品详情
     public function goodsdetail($goods_id=0){
         $goods_id=intval($goods_id);
+//        echo $goods_id;die;
         if (!$goods_id){
             die('参数错误');
         }
@@ -35,7 +36,7 @@ class GoodsController extends Controller
 //        dd($redis_history_key);
         Redis::zAdd($redis_history_key,time(),$goods_id);
         $goods_ids=Redis::zRevRange($redis_history_key,0,100000000000,true);//倒序
-//        dd($goods_id);
+//        dd($goods_ids);
         $data1=[];
         foreach ($goods_ids as $k=>$v) {
             $where=[
@@ -62,7 +63,7 @@ class GoodsController extends Controller
         $data2=[
             'jsconfig'=>$js_config
         ];
-        $url_code="http://1809niqingxiu.comcto.com/goodsdetail?goods_id=".$goods_id;
+        $url_code="http://1809niqingxiu.comcto.com/goodsdetail/".$goods_id;
         return view('goods.goodsdetail',['data'=>$data,'view'=>$view,'data1'=>$data1,'url_code'=>$url_code],$data2);
     }
 
