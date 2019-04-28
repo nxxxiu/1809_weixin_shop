@@ -8,7 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-    hello,Brown bear
+
+<img src="http://1809niqingxiu.comcto.com/img/shuo1" alt="">
+<img src="http://1809niqingxiu.comcto.com/img/shuo2" alt="">
+<img src="http://1809niqingxiu.comcto.com/img/shuo3" alt="">
+<img src="http://1809niqingxiu.comcto.com/img/shuo4" alt="">
+<img src="http://1809niqingxiu.comcto.com/img/shuo5" alt="">
+<img src="http://1809niqingxiu.comcto.com/img/shuo6" alt="">
+<img src="http://1809niqingxiu.comcto.com/img/shuo7" alt="">
+
 </body>
 </html>
 <script src="/js/jquery-3.2.1.min.js"></script>
@@ -24,10 +32,10 @@
     })
     wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
         wx.updateAppMessageShareData({
-            title: 'Brown bear', // 分享标题
-            desc: 'bear', // 分享描述
+            title: '😋', // 分享标题
+            desc: '🤣', // 分享描述
             link: 'http://1809niqingxiu.comcto.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://1809niqingxiu.comcto.com/img/ok.jpg', // 分享图标
+            imgUrl: 'http://1809niqingxiu.comcto.com/img/shuo6.jpg', // 分享图标
 
             success: function () {
                 // 设置成功
