@@ -31,7 +31,9 @@ class MaterialController extends Controller{
 //        var_dump($json) ;die;
         if (isset($json['media_id'])){
             Material::insert(['media_id'=>$json['media_id']]);
+            echo "上传成功";
         }
+
     }
 
     //上传图片

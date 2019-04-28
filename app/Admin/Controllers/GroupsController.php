@@ -51,6 +51,7 @@ class GroupsController extends Controller
         $response=$client->request('POST',$url,[
             'body'=>$str
         ]);
+//        dd($response);
 //        dd($client->getBody());
     }
 
