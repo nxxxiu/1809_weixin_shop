@@ -124,7 +124,7 @@ class WeixinController extends Controller
                 'event_key'=>$EventKey,
                 'create_time'=>$obj->CreateTime
             ];
-            $res1=WxUser::insert($data);
+            $res1=Activity::insert($data);
 //            dd($res1);
         }
         die($response_xml);
