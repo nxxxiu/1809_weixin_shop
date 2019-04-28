@@ -97,9 +97,9 @@ class WeixinController extends Controller
                       <Articles>
                         <item>
                           <Title><![CDATA[最新活动]]></Title>
-                          <Description><![CDATA[description1]]></Description>
+                          <Description><![CDATA[come]]></Description>
                           <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/ok.jpg'.']]></PicUrl>
-                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/artivity/index'.']]></Url>
+                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/activity/index'.']]></Url>
                         </item>
                       </Articles>
                     </xml>';
@@ -113,9 +113,9 @@ class WeixinController extends Controller
                       <Articles>
                         <item>
                           <Title><![CDATA[最新活动]]></Title>
-                          <Description><![CDATA[description1]]></Description>
+                          <Description><![CDATA[come]]></Description>
                           <PicUrl><![CDATA['.'http://1809niqingxiu.comcto.com/img/ok.jpg'.']]></PicUrl>
-                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/artivity/index'.']]></Url>
+                          <Url><![CDATA['.'http://1809niqingxiu.comcto.com/activity/index'.']]></Url>
                         </item>
                       </Articles>
                     </xml>';

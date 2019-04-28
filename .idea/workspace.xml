@@ -89,12 +89,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeixinController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="74" column="26" lean-forward="true" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
+            <state relative-caret-position="334">
+              <caret line="159" column="27" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
               <folding>
                 <element signature="e#38#66#0#PHP" expanded="true" />
                 <element signature="e#1316#2382#0#PHP" />
-                <element signature="e#2433#3875#0#PHP" />
+                <element signature="e#2998#5256#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -411,15 +411,15 @@
       <workItem from="1556238667067" duration="23110000" />
       <workItem from="1556355540692" duration="5978000" />
       <workItem from="1556411245312" duration="10033000" />
-      <workItem from="1556435710134" duration="7520000" />
+      <workItem from="1556435710134" duration="7818000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144549000" />
+    <option name="totallyTimeSpent" value="144847000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.023419203" />
@@ -772,12 +772,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeixinController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="74" column="26" lean-forward="true" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
+        <state relative-caret-position="334">
+          <caret line="159" column="27" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
           <folding>
             <element signature="e#38#66#0#PHP" expanded="true" />
             <element signature="e#1316#2382#0#PHP" />
-            <element signature="e#2433#3875#0#PHP" />
+            <element signature="e#2998#5256#0#PHP" />
           </folding>
         </state>
       </provider>
