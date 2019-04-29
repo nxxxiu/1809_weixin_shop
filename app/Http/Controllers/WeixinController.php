@@ -219,12 +219,14 @@ class WeixinController extends Controller
         return $arr;
     }
 
-    //最新福利  菜单
-    public function welfare(){
+    //创建菜单 福利 签到
+    public function create_menu(){
         $redirect_url=urlencode('http://1809niqingxiu.comcto.com/weixin/callback');
 //        dd($redirect_url);
         $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('APPID').'&redirect_uri='.$redirect_url.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 //        dd($url);
+        $redirect_signin=urlencode('http://1809niqingxiu.comcto.com/weixin/signin');
+        $url_signin='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('APPID').'&redirect_uri='.$redirect_signin.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
         $arr=[
             'button'=>[
                 [
@@ -232,6 +234,11 @@ class WeixinController extends Controller
                     'name'=>'最新福利',
                     'url'=> $url,
                 ],
+                [
+                    'type'=>'click',
+                    'name'=>'签到',
+                    'url'=>$url_signin,
+                ]
             ]
         ];
         $str=json_encode($arr,JSON_UNESCAPED_UNICODE);
@@ -248,7 +255,8 @@ class WeixinController extends Controller
         }
     }
 
-    //微信网页授权回调地址
+
+    //最新福利回调
     public function callback(){
         $code=$_GET['code'];
         $access_token=json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('APPSECRET').'&code='.$code.'&grant_type=authorization_code'),true);
@@ -259,6 +267,29 @@ class WeixinController extends Controller
         $userInfo=json_decode(file_get_contents($url),true);
 //        print_r($userInfo);
         echo '<h1>欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！</h1>';
-        header('Refresh:3;url=http://1809niqingxiu.comcto.com/goodsdetail/8');
+        header('Refresh:3;url=http://1809niqingxiu.comcto.com/goodsdetail/6');
+    }
+
+    //签到回调
+    public function signin(){
+        $code=$_GET['code'];
+        $access_token=json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('APPSECRET').'&code='.$code.'&grant_type=authorization_code'),true);
+        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
+//        dd($url);
+        $userInfo=json_decode(file_get_contents($url),true);
+        $res=Signin::where(['open_id'=>$access_token])->first();
+        if ($res){
+            echo "签到成功";
+        }else{
+            Signin::insert(['openid'=>$access_token]);
+            echo "欢迎:".$userInfo['nickname'].'首次签到';
+        }
+        $signin_key='signin:key:'.$userInfo['openid'];
+        $num=Redis::incr($signin_key);
+        $time_key='time:'.$userInfo['openid'];
+        $date=date('Y-m-d H:i:s');
+        $time=Redis::zAdd($time_key,time(),$date);
+        $date_time=Redis::zRevRange($time_key,0,10000000000);
+        return view('weixin.signin',['num'=>$num,'date_time'=>$date_time]);
     }
 }

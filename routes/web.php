@@ -49,7 +49,7 @@ Route::post('/wxpay/paySuccess', 'WxpayController@paySuccess');      //微信支
 Route::get('/weixin/valid','WeixinController@valid');//原样返回echostr 第一次get请求
 Route::post('/weixin/valid','WeixinController@wxvalid');//接收微信的推送事件 post
 Route::get('/weixin/callback', 'WeixinController@callback');//微信网页授权回调地址
-Route::get('/weixin/welfare', 'WeixinController@welfare');//最新福利 菜单
+Route::get('/weixin/create_menu', 'WeixinController@create_menu');//创建菜单 最新福利  签到
 
 //生成带参数的二维码
 Route::get('/activity/activity','ActivityController@activity');
