@@ -277,7 +277,7 @@ class WeixinController extends Controller
         $access_token=json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('APPSECRET').'&code='.$code.'&grant_type=authorization_code'),true);
         $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
 //        dd($url);
-        $open_id=$access_token['open_id'];
+        $open_id=$access_token['openid'];
         $userInfo=json_decode(file_get_contents($url),true);
         $res=Signin::where(['open_id'=>$access_token])->first();
         if ($res){
