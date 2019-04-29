@@ -248,7 +248,7 @@ class WeixinController extends Controller
         }
     }
 
-    //    微信网页授权回调地址
+    //微信网页授权回调地址
     public function callback(){
         $code=$_GET['code'];
         $access_token=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('SECRET').'&code='.$code.'&grant_type=authorization_code'"),true);
@@ -257,7 +257,7 @@ class WeixinController extends Controller
         $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
         $userInfo=json_decode(file_get_contents($url),true);
 //        print_r($userInfo);
-        echo '欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！';
-        header('Refresh:3;url='.$_GET['redirect']);
+        echo '<h2>欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！</h2>>';
+        header('Refresh:3;url=http://1809niqingxiu.comcto.com/weixin/detail/8');
     }
 }
