@@ -61,6 +61,9 @@ class WeixinController extends Controller
                             </item>
                           </Articles>
                         </xml>';
+            }else{
+                $goods=$this->seachgoods($obj);
+                echo $goods;
             }
         }else if($type='event'){
             $event=$obj->Event;
@@ -78,6 +81,86 @@ class WeixinController extends Controller
             }
             echo $response_xml;
         }
+    }
+
+    //微信网页授权回调地址
+    public function callback(){
+        $code=$_GET['code'];
+        $access_token=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx11c143836e27ac69&secret=f13ee305431b7450e43a982f3263968e&code=".$code."&grant_type=authorization_code"),true);
+//        print_r($access_token);
+        //用户信息
+        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
+        $userInfo=json_decode(file_get_contents($url),true);
+//        print_r($userInfo);
+        // 用户信息入库
+        $openid=$userInfo['openid'];
+//        dd($openid);
+        $res=WxUser::where('openid',$openid)->first();
+//        dd($res);
+        if($res){
+            echo '欢迎回来:'.$res['nickname'];
+        }else{
+            $data=[
+                'openid'=>$openid,
+                'nickname'=>$userInfo['nickname'],
+                'sex'=>$userInfo['sex'],
+                'country'=>$userInfo['country'],
+                'province'=>$userInfo['province'],
+                'city'=>$userInfo['city'],
+                'headimgurl'=>$userInfo['headimgurl']
+            ];
+//            dd($data);
+//            DB::table('wx_user')->insertGetId($data);
+            WxUser::insert($data);
+            echo '欢迎:'.$userInfo['nickname'].'关注';
+        }
+    }
+
+    //搜索商品数据
+    public function seachgoods($obj){
+        $openid=$obj->FromUserName;
+        $wx_id=$obj->ToUserName;
+        $where=[
+            'goods_name'=>$obj->Content
+        ];
+        $goodsInfo=Goods::where($where)->first();
+        if ($goodsInfo){
+            //有 推送商品
+            $goods= '<xml>
+                      <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                      <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                      <CreateTime>'.time().'</CreateTime>
+                      <MsgType><![CDATA[news]]></MsgType>
+                      <ArticleCount>1</ArticleCount>
+                      <Articles>
+                        <item>
+                          <Title><![CDATA['.$goodsInfo->goods_name.']]></Title>
+                          <Description><![CDATA['.$goodsInfo->goods_desc.']]></Description>
+                          <PicUrl><![CDATA[http://1809niqingxiu.comcto.com/img/'.$goodsInfo->goods_img.']]></PicUrl>
+                          <Url><![CDATA[http://1809niqingxiu.comcto.com/goodsdetail/'.$goodsInfo->goods_id.']]></Url>
+                        </item>
+                      </Articles>
+                    </xml>';
+        }else{
+            $data=Goods::get()->toArray();
+            $num=array_rand($data,1);
+            $goods='<xml>
+                      <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                      <FromUserName><![CDATA['.$wx_id.']]></FromUserName>
+                      <CreateTime>'.time().'</CreateTime>
+                      <MsgType><![CDATA[news]]></MsgType>
+                      <ArticleCount>1</ArticleCount>
+                      <Articles>
+                        <item>
+                          <Title><![CDATA['.$data[$num]['goods_name'].']]></Title>
+                          <Description><![CDATA['.$data[$num]['goods_desc'].']]></Description>
+                          <PicUrl><![CDATA[http://1809niqingxiu.comcto.com/img/'.$data[$num]['goods_img'].']]></PicUrl>
+                          <Url><![CDATA[http://1809niqingxiu.comcto.com/goodsdetail/'.$data[$num]['goods_id'].']]></Url>
+                        </item>
+                      </Articles>
+                    </xml>';
+        }
+        return $goods;
     }
 
     //扫描带参数二维码
@@ -158,39 +241,6 @@ class WeixinController extends Controller
             $response_xml= '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$wx_id.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. '欢迎关注 '. $u['nickname'] .']]></Content></xml>';
         }
         die($response_xml);
-    }
-
-    //微信网页授权回调地址
-    public function callback(){
-        $code=$_GET['code'];
-        $access_token=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx11c143836e27ac69&secret=f13ee305431b7450e43a982f3263968e&code=".$code."&grant_type=authorization_code"),true);
-//        print_r($access_token);
-        //用户信息
-        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
-        $userInfo=json_decode(file_get_contents($url),true);
-//        print_r($userInfo);
-        // 用户信息入库
-        $openid=$userInfo['openid'];
-//        dd($openid);
-        $res=WxUser::where('openid',$openid)->first();
-//        dd($res);
-        if($res){
-            echo '欢迎回来:'.$res['nickname'];
-        }else{
-            $data=[
-                'openid'=>$openid,
-                'nickname'=>$userInfo['nickname'],
-                'sex'=>$userInfo['sex'],
-                'country'=>$userInfo['country'],
-                'province'=>$userInfo['province'],
-                'city'=>$userInfo['city'],
-                'headimgurl'=>$userInfo['headimgurl']
-            ];
-//            dd($data);
-//            DB::table('wx_user')->insertGetId($data);
-            WxUser::insert($data);
-            echo '欢迎:'.$userInfo['nickname'].'关注';
-        }
     }
 
     //查询用户信息

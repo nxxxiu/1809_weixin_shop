@@ -37,8 +37,8 @@ Route::get('/order/order', 'OrderController@order');//提交订单
 Route::get('/order/orderlist', 'OrderController@orderlist');//订单列表
 Route::get('/order/payStatus', 'OrderController@payStatus');      //查询订单支付状态
 
-//删除未支付的订单
-Route::get('/Crontab/delorders', 'CrontabController@delorders');//删除订单
+//计划任务
+Route::get('/Crontab/delorders', 'CrontabController@delorders');//删除未支付的订单
 
 //微信支付
 Route::get('/wxpay/pay', 'WxpayController@pay');      //微信支付
