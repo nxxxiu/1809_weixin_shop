@@ -257,27 +257,7 @@ class WeixinController extends Controller
         $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
         $userInfo=json_decode(file_get_contents($url),true);
 //        print_r($userInfo);
-        // 用户信息入库
-        $openid=$userInfo['openid'];
-//        dd($openid);
-        $res=WxUser::where('openid',$openid)->first();
-//        dd($res);
-        if($res){
-            echo '欢迎回来:'.$res['nickname'];
-        }else{
-            $data=[
-                'openid'=>$openid,
-                'nickname'=>$userInfo['nickname'],
-                'sex'=>$userInfo['sex'],
-                'country'=>$userInfo['country'],
-                'province'=>$userInfo['province'],
-                'city'=>$userInfo['city'],
-                'headimgurl'=>$userInfo['headimgurl']
-            ];
-//            dd($data);
-//            DB::table('wx_user')->insertGetId($data);
-            WxUser::insert($data);
-            echo '欢迎:'.$userInfo['nickname'].'关注';
-        }
+        echo '欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！';
+        header('Refresh:3;url='.$_GET['redirect']);
     }
 }

@@ -38,6 +38,7 @@
       <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/buding.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/buding.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/img/niunai.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/niunai.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/img/niunaitang.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/niunaitang.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/img/ok.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/ok.jpg" afterDir="false" />
@@ -46,6 +47,7 @@
       <change beforePath="$PROJECT_DIR$/public/img/paofu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/paofu.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/img/qq.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/qq.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/img/xiaomantou.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/xiaomantou.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/xiaoxiaosu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/xiaoxiaosu.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/jquery-3.2.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery-3.2.1.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/qrcode.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/qrcode.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/activity/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/activity/index.blade.php" afterDir="false" />
@@ -102,8 +104,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeixinController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="242" column="17" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
+            <state relative-caret-position="183">
+              <caret line="260" column="46" lean-forward="true" selection-start-line="260" selection-start-column="46" selection-end-line="260" selection-end-column="46" />
               <folding>
                 <element signature="e#38#66#0#PHP" expanded="true" />
                 <element signature="e#292#358#0#PHP" />
@@ -399,12 +401,12 @@
       <workItem from="1556435710134" duration="16998000" />
       <workItem from="1556497669100" duration="5239000" />
       <workItem from="1556502939550" duration="9110000" />
-      <workItem from="1556522456026" duration="1093000" />
+      <workItem from="1556522456026" duration="1386000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169469000" />
+    <option name="totallyTimeSpent" value="169762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -765,8 +767,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeixinController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="242" column="17" selection-start-line="242" selection-start-column="17" selection-end-line="242" selection-end-column="17" />
+        <state relative-caret-position="183">
+          <caret line="260" column="46" lean-forward="true" selection-start-line="260" selection-start-column="46" selection-end-line="260" selection-end-column="46" />
           <folding>
             <element signature="e#38#66#0#PHP" expanded="true" />
             <element signature="e#292#358#0#PHP" />
