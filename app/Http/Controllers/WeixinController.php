@@ -258,7 +258,7 @@ class WeixinController extends Controller
 //        dd($url);
         $userInfo=json_decode(file_get_contents($url),true);
 //        print_r($userInfo);
-        echo '<h2>欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！</h2>>';
-        header('Refresh:3;url=http://1809niqingxiu.comcto.com/weixin/detail/8');
+        echo '<h1>欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！</h1>';
+        header('Refresh:3;url=http://1809niqingxiu.comcto.com/goodsdetail/8');
     }
 }
