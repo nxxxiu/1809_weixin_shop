@@ -7,6 +7,7 @@ use App\WxText;
 use App\WxUser;
 use App\Goods;
 use App\Activity;
+use App\Signin;
 use Illuminate\Support\Facades\Redis;
 class WeixinController extends Controller
 {
