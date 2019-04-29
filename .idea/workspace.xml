@@ -283,7 +283,7 @@
       <path value="$PROJECT_DIR$/vendor/encore/laravel-admin" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="735" />
     <option name="width" value="1197" />
     <option name="height" value="1020" />

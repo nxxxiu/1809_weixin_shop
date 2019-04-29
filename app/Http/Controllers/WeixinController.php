@@ -235,7 +235,7 @@ class WeixinController extends Controller
                     'url'=> $url,
                 ],
                 [
-                    'type'=>'click',
+                    'type'=>'view',
                     'name'=>'签到',
                     'url'=>$url_signin,
                 ]
