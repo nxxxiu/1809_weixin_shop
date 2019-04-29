@@ -83,39 +83,6 @@ class WeixinController extends Controller
         }
     }
 
-    //微信网页授权回调地址
-    public function callback(){
-        $code=$_GET['code'];
-        $access_token=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx11c143836e27ac69&secret=f13ee305431b7450e43a982f3263968e&code=".$code."&grant_type=authorization_code"),true);
-//        print_r($access_token);
-        //用户信息
-        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
-        $userInfo=json_decode(file_get_contents($url),true);
-//        print_r($userInfo);
-        // 用户信息入库
-        $openid=$userInfo['openid'];
-//        dd($openid);
-        $res=WxUser::where('openid',$openid)->first();
-//        dd($res);
-        if($res){
-            echo '欢迎回来:'.$res['nickname'];
-        }else{
-            $data=[
-                'openid'=>$openid,
-                'nickname'=>$userInfo['nickname'],
-                'sex'=>$userInfo['sex'],
-                'country'=>$userInfo['country'],
-                'province'=>$userInfo['province'],
-                'city'=>$userInfo['city'],
-                'headimgurl'=>$userInfo['headimgurl']
-            ];
-//            dd($data);
-//            DB::table('wx_user')->insertGetId($data);
-            WxUser::insert($data);
-            echo '欢迎:'.$userInfo['nickname'].'关注';
-        }
-    }
-
     //搜索商品数据
     public function seachgoods($obj){
         $openid=$obj->FromUserName;
@@ -252,4 +219,65 @@ class WeixinController extends Controller
         return $arr;
     }
 
+    //最新福利  菜单
+    public function welfare(){
+        $redirect_url=urlencode('http://1809niqingxiu.comcto.com/weixin/callback');
+//        dd($redirect_url);
+        $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('APPID').'&redirect_uri='.$redirect_url.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+//        dd($url);
+        $arr=[
+            'button'=>[
+                [
+                    'type'=>'view',
+                    'name'=>'最新福利',
+                    'url'=> $url,
+                ],
+            ]
+        ];
+        $str=json_encode($arr,JSON_UNESCAPED_UNICODE);
+        $client=new Client();
+        $response=$client->request('POST','https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.getWxAccessToken(),[
+            'body'=>$str
+        ]);
+        $res=json_decode($response->getBody(),true);
+//        dd($res);
+        if($res['errcode']>0){
+            echo "创建菜单失败";
+        }else{
+            echo "创建菜单成功";
+        }
+    }
+
+    //    微信网页授权回调地址
+    public function callback(){
+        $code=$_GET['code'];
+        $access_token=json_decode(file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx11c143836e27ac69&secret=f13ee305431b7450e43a982f3263968e&code=".$code."&grant_type=authorization_code"),true);
+//        print_r($access_token);
+        //用户信息
+        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
+        $userInfo=json_decode(file_get_contents($url),true);
+//        print_r($userInfo);
+        // 用户信息入库
+        $openid=$userInfo['openid'];
+//        dd($openid);
+        $res=WxUser::where('openid',$openid)->first();
+//        dd($res);
+        if($res){
+            echo '欢迎回来:'.$res['nickname'];
+        }else{
+            $data=[
+                'openid'=>$openid,
+                'nickname'=>$userInfo['nickname'],
+                'sex'=>$userInfo['sex'],
+                'country'=>$userInfo['country'],
+                'province'=>$userInfo['province'],
+                'city'=>$userInfo['city'],
+                'headimgurl'=>$userInfo['headimgurl']
+            ];
+//            dd($data);
+//            DB::table('wx_user')->insertGetId($data);
+            WxUser::insert($data);
+            echo '欢迎:'.$userInfo['nickname'].'关注';
+        }
+    }
 }

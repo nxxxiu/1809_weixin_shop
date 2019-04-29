@@ -38,10 +38,4 @@ class JssdkController extends Controller
         echo '<pre>';print_r($_GET);echo '</pre>';
     }
 
-//    //图片下载
-//    public function download(){
-//        $client=new Client;
-//        $serverId=$_GET['serverId'];
-//        dd($serverId);
-//    }
 }

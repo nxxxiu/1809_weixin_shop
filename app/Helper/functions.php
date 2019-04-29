@@ -1,6 +1,7 @@
 <?php
     use Illuminate\Support\Facades\Redis;
 
+    //获取用户access_token
     function getWxAccessToken(){
         $key='wx_access_token';//1809a_wx_access_token
         //判断是否有缓存
@@ -21,6 +22,7 @@
 
     }
 
+    //获取微信jsapi ticket
     function getJsapiTicket(){
         $key='wx_jsapi_ticket';
         $ticket=Redis::get($key);
