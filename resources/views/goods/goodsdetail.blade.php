@@ -65,7 +65,7 @@
             <li>商品名称：{{$data['goods_name']}}</li>
             <li>商品价格：{{$data['goods_price']}}</li>
             <li>商品库存：{{$data['goods_store']}}</li>
-            <li>商品图片：<img src="http://1809niqingxiu/img/{{$data['goods_img']}}}" alt="暂无图片"></li>
+            <li>商品图片：<img src="http://1809niqingxiu.comcto.com/img/{{$data['goods_img']}}" alt="暂无图片"></li>
             <li>浏览次数：{{$view}}</li>
         </ul>==============================================
     </div>
