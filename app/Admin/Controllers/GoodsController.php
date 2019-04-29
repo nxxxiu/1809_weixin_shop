@@ -85,6 +85,7 @@ class GoodsController extends Controller
         $grid->goods_name('商品名称');
         $grid->goods_price('商品价格');
         $grid->goods_desc('商品描述');
+        $grid->goods_img('商品图片')->image();
         $grid->goods_store('商品库存');
         $grid->goods_status('商品状态');
         $grid->add_time('添加时间');
@@ -122,13 +123,13 @@ class GoodsController extends Controller
     {
         $form = new Form(new Goods);
 
-        $form->number('goods_id', 'Goods id');
-        $form->text('goods_name', 'Goods name');
-        $form->number('goods_price', 'Goods price');
-        $form->text('goods_desc', 'Goods desc');
-        $form->number('goods_store', 'Goods store');
-        $form->switch('goods_status', 'Goods status');
-        $form->number('add_time', 'Add time');
+        $form->number('goods_id', '商品ID');
+        $form->text('goods_name', '商品名称');
+        $form->number('goods_price', '商品价格');
+        $form->text('goods_desc', '商品描述');
+        $form->number('goods_store', '商品库存');
+        $form->switch('goods_status', '商品状态');
+        $form->image('goods_img','商品图片');
 
         return $form;
     }

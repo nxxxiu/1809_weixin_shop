@@ -81,6 +81,7 @@ class GoodsController extends Controller
             ];
             $data[]=Goods::where($where)->first();
         }
+        
 //        dd($data);
         return view('goods.getsort',['data'=>$data]);
     }
