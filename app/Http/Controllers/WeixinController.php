@@ -257,41 +257,41 @@ class WeixinController extends Controller
     }
 
 
-    //最新福利回调
-    public function callback(){
-        $code=$_GET['code'];
-        $access_token=json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('APPSECRET').'&code='.$code.'&grant_type=authorization_code'),true);
-//        print_r($access_token);
-        //用户信息
-        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
-//        dd($url);
-        $userInfo=json_decode(file_get_contents($url),true);
-//        print_r($userInfo);
-        echo '<h1>欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！</h1>';
-        header('Refresh:3;url=http://1809niqingxiu.comcto.com/goodsdetail/6');
-    }
-
-    //签到回调
-    public function signin(){
-        $code=$_GET['code'];
-        $access_token=json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('APPSECRET').'&code='.$code.'&grant_type=authorization_code'),true);
-        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
-//        dd($url);
-        $open_id=$access_token['openid'];
-        $userInfo=json_decode(file_get_contents($url),true);
-        $res=Signin::where(['open_id'=>$access_token])->first();
-        if ($res){
-            echo "签到成功";
-        }else{
-            Signin::insert(['open_id'=>$open_id]);
-            echo "欢迎:".$userInfo['nickname'].'首次签到';
-        }
-        $signin_key='signin:key:'.$userInfo['openid'];
-        $num=Redis::incr($signin_key);
-        $time_key='time:'.$userInfo['openid'];
-        $date=date('Y-m-d H:i:s');
-        $time=Redis::zAdd($time_key,time(),$date);
-        $date_time=Redis::zRevRange($time_key,0,10000000000);
-        return view('weixin.signin',['num'=>$num,'date_time'=>$date_time]);
-    }
+//    //最新福利回调
+//    public function callback(){
+//        $code=$_GET['code'];
+//        $access_token=json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('APPSECRET').'&code='.$code.'&grant_type=authorization_code'),true);
+////        print_r($access_token);
+//        //用户信息
+//        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
+////        dd($url);
+//        $userInfo=json_decode(file_get_contents($url),true);
+////        print_r($userInfo);
+//        echo '<h1>欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！</h1>';
+//        header('Refresh:3;url=http://1809niqingxiu.comcto.com/goodsdetail/6');
+//    }
+//
+//    //签到回调
+//    public function signin(){
+//        $code=$_GET['code'];
+//        $access_token=json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('APPID').'&secret='.env('APPSECRET').'&code='.$code.'&grant_type=authorization_code'),true);
+//        $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token['access_token'].'&openid='.$access_token['openid'].'&lang=zh_CN';
+////        dd($url);
+//        $open_id=$access_token['openid'];
+//        $userInfo=json_decode(file_get_contents($url),true);
+//        $res=Signin::where(['open_id'=>$access_token])->first();
+//        if ($res){
+//            echo "签到成功";
+//        }else{
+//            Signin::insert(['open_id'=>$open_id]);
+//            echo "欢迎:".$userInfo['nickname'].'首次签到';
+//        }
+//        $signin_key='signin:key:'.$userInfo['openid'];
+//        $num=Redis::incr($signin_key);
+//        $time_key='time:'.$userInfo['openid'];
+//        $date=date('Y-m-d H:i:s');
+//        $time=Redis::zAdd($time_key,time(),$date);
+//        $date_time=Redis::zRevRange($time_key,0,10000000000);
+//        return view('weixin.signin',['num'=>$num,'date_time'=>$date_time]);
+//    }
 }
