@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\WxUser;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 class ExamController extends Controller
 {
@@ -36,5 +37,23 @@ class ExamController extends Controller
             echo '欢迎:'.$userInfo['nickname'];
 
         }
+    }
+
+    //标签群发
+    public function tag(){
+        $name="pig";
+        $url='https://api.weixin.qq.com/cgi-bin/tags/create?access_token='.getWxAccessToken();
+        $a=[
+            "tag" =>["name"=>$name ]
+        ];
+        $data=json_encode($a,JSON_UNESCAPED_UNICODE);
+        //echo $data;die;
+        $client=new Client();
+        $response=$client->request('post',$url,[
+            'body'=>$data
+        ]);
+        $res=$response->getBody();
+        $arr=json_decode($res,true);
+         echo'<pre>';print_r($arr);echo'</pre>';
     }
 }

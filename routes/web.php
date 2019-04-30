@@ -60,5 +60,5 @@ Route::get('/activity/index','ActivityController@index');
 Route::get('/jssdk/jstest','JssdkController@jstest');
 Route::get('/jssdk/getimg', 'JssdkController@getimg');
 
-//标签
-Route::get('/exam/callback','ExamController@callback');
+//标签群发
+Route::get('/exam/callback','ExamController@callback');//网页授权
