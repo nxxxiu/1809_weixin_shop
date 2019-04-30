@@ -19,9 +19,9 @@ class ExamController extends Controller
         // 用户信息入库
         $openid=$userInfo['openid'];
         $res=WxUser::where('openid',$openid)->first();
-         dd($res);
+//         dd($res);
         if($res){
-            echo '欢迎回来:'.$res['user_name'];
+            echo '欢迎回来:'.$res['nickname'];
         }else{
             $data=[
                 'openid'=>$openid,
@@ -32,7 +32,7 @@ class ExamController extends Controller
                 'city'=>$userInfo['city'],
                 'headimgurl'=>$userInfo['headimgurl']
             ];
-            User::insert($data);
+            WxUser::insert($data);
             echo '欢迎:'.$userInfo['nickname'];
 
         }
