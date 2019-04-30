@@ -59,3 +59,6 @@ Route::get('/activity/index','ActivityController@index');
 //JS-SDK
 Route::get('/jssdk/jstest','JssdkController@jstest');
 Route::get('/jssdk/getimg', 'JssdkController@getimg');
+
+//标签
+Route::get('/exam/callback','ExamController@callback');
