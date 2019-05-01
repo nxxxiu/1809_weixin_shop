@@ -62,3 +62,4 @@ Route::get('/jssdk/getimg', 'JssdkController@getimg');
 
 //标签群发
 Route::get('/exam/callback','ExamController@callback');//网页授权
+Route::get('/exam/tag','ExamController@tag');//创建标签
