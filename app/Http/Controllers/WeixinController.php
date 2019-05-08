@@ -222,7 +222,7 @@ class WeixinController extends Controller
 
     //创建菜单 福利 签到
     public function create_menu(){
-        $redirect_url=urlencode('http://www.cccute.top/exam/callback');
+        $redirect_url=urlencode('http://www.cccute.top/weixin/callback');
 //        dd($redirect_url);
         $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('APPID').'&redirect_uri='.$redirect_url.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 //        dd($url);
