@@ -57,8 +57,8 @@ class WeixinController extends Controller
                             <item>
                               <Title><![CDATA['.$goodsInfo->goods_name.']]></Title>
                               <Description><![CDATA['.$goodsInfo->goods_desc.']]></Description>
-                              <PicUrl><![CDATA['.'http://www.cccute.top/img/ok.jpg'.']]></PicUrl>
-                              <Url><![CDATA['.'http://www.cccute.top/goodsdetail/'.$goodsInfo->goods_id.']]></Url>
+                              <PicUrl><![CDATA['.'http://weixin.cccute.top/img/ok.jpg'.']]></PicUrl>
+                              <Url><![CDATA['.'http://weixin.cccute.top/goodsdetail/'.$goodsInfo->goods_id.']]></Url>
                             </item>
                           </Articles>
                         </xml>';
@@ -104,8 +104,8 @@ class WeixinController extends Controller
                         <item>
                           <Title><![CDATA['.$goodsInfo->goods_name.']]></Title>
                           <Description><![CDATA['.$goodsInfo->goods_desc.']]></Description>
-                          <PicUrl><![CDATA[http://www.cccute.top/img/'.$goodsInfo->goods_img.']]></PicUrl>
-                          <Url><![CDATA[http://www.cccute.top/goodsdetail/'.$goodsInfo->goods_id.']]></Url>
+                          <PicUrl><![CDATA[http://weixin.cccute.top/img/'.$goodsInfo->goods_img.']]></PicUrl>
+                          <Url><![CDATA[http://weixin.cccute.top/goodsdetail/'.$goodsInfo->goods_id.']]></Url>
                         </item>
                       </Articles>
                     </xml>';
@@ -122,8 +122,8 @@ class WeixinController extends Controller
                         <item>
                           <Title><![CDATA['.$data[$num]['goods_name'].']]></Title>
                           <Description><![CDATA['.$data[$num]['goods_desc'].']]></Description>
-                          <PicUrl><![CDATA[http://www.cccute.top/img/'.$data[$num]['goods_img'].']]></PicUrl>
-                          <Url><![CDATA[http://www.cccute.top/goodsdetail/'.$data[$num]['goods_id'].']]></Url>
+                          <PicUrl><![CDATA[http://weixin.cccute.top/img/'.$data[$num]['goods_img'].']]></PicUrl>
+                          <Url><![CDATA[http://weixin.cccute.top/goodsdetail/'.$data[$num]['goods_id'].']]></Url>
                         </item>
                       </Articles>
                     </xml>';
@@ -149,8 +149,8 @@ class WeixinController extends Controller
                         <item>
                           <Title><![CDATA[最新活动]]></Title>
                           <Description><![CDATA[come]]></Description>
-                          <PicUrl><![CDATA['.'http://www.cccute.top/img/ok.jpg'.']]></PicUrl>
-                          <Url><![CDATA['.'http://www.cccute.top/activity/index'.']]></Url>
+                          <PicUrl><![CDATA['.'http://weixin.cccute.top/img/ok.jpg'.']]></PicUrl>
+                          <Url><![CDATA['.'http://weixin.cccute.top/activity/index'.']]></Url>
                         </item>
                       </Articles>
                     </xml>';
@@ -165,8 +165,8 @@ class WeixinController extends Controller
                         <item>
                           <Title><![CDATA[最新活动]]></Title>
                           <Description><![CDATA[come]]></Description>
-                          <PicUrl><![CDATA['.'http://www.cccute.top/img/ok.jpg'.']]></PicUrl>
-                          <Url><![CDATA['.'http://www.cccute.top/activity/index'.']]></Url>
+                          <PicUrl><![CDATA['.'http://weixin.cccute.top/img/ok.jpg'.']]></PicUrl>
+                          <Url><![CDATA['.'http://weixin.cccute.top/activity/index'.']]></Url>
                         </item>
                       </Articles>
                     </xml>';
@@ -222,11 +222,11 @@ class WeixinController extends Controller
 
     //创建菜单 福利 签到
     public function create_menu(){
-        $redirect_url=urlencode('http://www.cccute.top/weixin/callback');
+        $redirect_url=urlencode('http://weixin.cccute.top/weixin/callback');
 //        dd($redirect_url);
         $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('APPID').'&redirect_uri='.$redirect_url.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 //        dd($url);
-        $redirect_signin=urlencode('http://www.cccute.top/weixin/signin');
+        $redirect_signin=urlencode('http://weixin.cccute.top/weixin/signin');
         $url_signin='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('APPID').'&redirect_uri='.$redirect_signin.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
         $arr=[
             'button'=>[
@@ -267,7 +267,7 @@ class WeixinController extends Controller
         $userInfo=json_decode(file_get_contents($url),true);
 //        print_r($userInfo);
         echo '<h1>欢迎:'.$userInfo['nickname'].'，正在跳转福利页面！</h1>';
-        header('Refresh:3;url=http://www.cccute.top/goodsdetail/6');
+        header('Refresh:3;url=http://weixin.cccute.top/goodsdetail/6');
     }
 
     //签到回调
