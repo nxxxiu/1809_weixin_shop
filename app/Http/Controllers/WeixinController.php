@@ -283,7 +283,7 @@ class WeixinController extends Controller
             echo "签到成功";
         }else{
             Signin::insert(['open_id'=>$open_id]);
-            echo "欢迎:".$userInfo['nickname'].'首次签到';
+            echo "欢迎:".$userInfo['nickname'].'签到';
         }
         $signin_key='signin:key:'.$userInfo['openid'];
         $num=Redis::incr($signin_key);

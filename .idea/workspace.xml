@@ -91,8 +91,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeixinController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="224" column="61" selection-start-line="224" selection-start-column="61" selection-end-line="224" selection-end-column="61" />
+            <state relative-caret-position="247">
+              <caret line="285" column="46" selection-start-line="285" selection-start-column="46" selection-end-line="285" selection-end-column="46" />
               <folding>
                 <element signature="e#38#66#0#PHP" expanded="true" />
                 <element signature="e#308#374#0#PHP" />
@@ -102,7 +102,6 @@
                 <element signature="e#7429#8862#0#PHP" />
                 <element signature="e#8881#9291#0#PHP" />
                 <element signature="e#10740#11451#0#PHP" />
-                <element signature="e#11468#12610#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -452,12 +451,12 @@
       <workItem from="1556794634184" duration="468000" />
       <workItem from="1556950734311" duration="159000" />
       <workItem from="1557024026464" duration="3015000" />
-      <workItem from="1557286387983" duration="1286000" />
+      <workItem from="1557286387983" duration="1625000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188541000" />
+    <option name="totallyTimeSpent" value="188880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -816,13 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/weixin/signin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -830,10 +822,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/weixin/signin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WeixinController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="224" column="61" selection-start-line="224" selection-start-column="61" selection-end-line="224" selection-end-column="61" />
+        <state relative-caret-position="247">
+          <caret line="285" column="46" selection-start-line="285" selection-start-column="46" selection-end-line="285" selection-end-column="46" />
           <folding>
             <element signature="e#38#66#0#PHP" expanded="true" />
             <element signature="e#308#374#0#PHP" />
@@ -843,7 +842,6 @@
             <element signature="e#7429#8862#0#PHP" />
             <element signature="e#8881#9291#0#PHP" />
             <element signature="e#10740#11451#0#PHP" />
-            <element signature="e#11468#12610#0#PHP" />
           </folding>
         </state>
       </provider>
