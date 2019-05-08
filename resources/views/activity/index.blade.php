@@ -26,8 +26,8 @@ hello
         wx.updateAppMessageShareData({
             title: '😋', // 分享标题
             desc: '🤣', // 分享描述
-            link: 'http://1809niqingxiu.comcto.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://1809niqingxiu.comcto.com/img/ok.jpg', // 分享图标
+            link: 'http://www.cccute.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://www.cccute.com/img/ok.jpg', // 分享图标
 
             success: function () {
                 // 设置成功
@@ -36,8 +36,8 @@ hello
         })
         wx.updateTimelineShareData({
             title: 'en ', // 分享标题
-            link: 'http://1809niqingxiu.comcto.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://1809niqingxiu.comcto.com/img/ok.jpg', // 分享图标
+            link: 'http://www.cccute.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://www.cccute.com/img/ok.jpg', // 分享图标
             success: function () {
                 // 设置成功
                 // alert('分享成功');
@@ -45,8 +45,8 @@ hello
         })
         wx.onMenuShareTimeline({
             title: '123', // 分享标题
-            link: 'http://1809niqingxiu.comcto.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://1809niqingxiu.comcto.com/img/okk.jpg', // 分享图标
+            link: 'http://www.cccute.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://www.cccute.com/img/okk.jpg', // 分享图标
             success: function () {
                 // 用户点击了分享后执行的回调函数
             },
@@ -54,8 +54,8 @@ hello
         wx.onMenuShareAppMessage({
             title: '1234', // 分享标题
             desc: 'emmmm....', // 分享描述
-            link: 'http://1809niqingxiu.comcto.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'http://1809niqingxiu.comcto.com/img/okk.jpg', // 分享图标
+            link: 'http://www.cccute.com/activity/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://www.cccute.com/img/okk.jpg', // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
             success: function () {

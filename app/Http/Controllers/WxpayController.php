@@ -11,7 +11,7 @@ class WxpayController extends Controller
 {
 
     public $wx_unifiedorder_url="https://api.mch.weixin.qq.com/pay/unifiedorder";   //统一下单接口
-    public $notify_url='http://1809niqingxiu.comcto.com/wxpay/notify';         //支付回调
+    public $notify_url='http://www.cccute.com/wxpay/notify';         //支付回调
     //微信支付测试
     public function pay(){
 //        echo Str::random(16);die;
